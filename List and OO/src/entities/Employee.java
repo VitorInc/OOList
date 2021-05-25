@@ -45,7 +45,7 @@ public class Employee {
         return "Employee{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", salary=" + String.format("%5.f,%5.f",salary) +
+                ", salary=" + salary +
                 '}';
     }
 }
