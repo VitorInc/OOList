@@ -23,14 +23,46 @@ public class Program {
             String name = in.next();
             System.out.print("Salary: ");
             Double salary = in.nextDouble();
-            Employee e = new Employee(id, name, salary);
-            list.add(e);
+            Employee emp = new Employee(id, name, salary);
+            list.add(emp);
 
         }
         System.out.println("Enter the employee id that will have salary increase");
         int idsalary = in.nextInt();
 
+        Employee emp = list.stream().filter(x -> x.getId() == idsalary).findFirst().orElse(null);
+
+        if (emp == null) {
+            System.out.println("This id does not exist!");
+        }
+        else {
+            System.out.print("Enter the percentage: ");
+            double percent = in.nextDouble();
+
+            emp.increaseSalary(percent);
+        }
+
+        System.out.println();
+        System.out.println("List of employees:");
+        for (Employee e : list) {
+            System.out.println(e);
+        }
+
+
 
         in.close();
+    }
+    public static Integer position(List<Employee> list, int id) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId() == id) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public static boolean hasId(List<Employee> list, int id) {
+        Employee emp = list.stream().filter(x -> x.getId() == id).findFirst().orElse(null);
+        return emp != null;
     }
 }
